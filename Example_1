@@ -1,0 +1,31 @@
+import math
+
+def suite_arctan(n):
+    """
+    Retourne le n-ième terme de la suite u_n = arctan(n)
+    """
+    return math.atan(n)
+
+def est_Cauchy(u, epsilon):
+    """
+    Vérifie si une suite donnée est de Cauchy pour un epsilon donné.
+    """
+    N = len(u)
+    for i in range(N):
+        for j in range(i+1, N):
+            if abs(u[i] - u[j]) >= epsilon:
+                return False  # La condition de Cauchy n'est pas satisfaite
+    return True  # La suite est de Cauchy
+# Example1
+N = 100
+suite = [suite_arctan(n) for n in range(1, N+1)]
+
+epsilon = 0.01
+resultat = est_Cauchy(suite, epsilon)
+
+print("La suite est de Cauchy ?", resultat)
+
+if resultat:
+    print("La suite satisfait la condition de Cauchy pour epsilon =", epsilon)
+else:
+    print("La suite ne satisfait pas la condition de Cauchy, donc elle ne converge pas dans un espace complet.")
